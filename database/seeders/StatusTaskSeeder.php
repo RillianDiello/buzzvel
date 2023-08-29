@@ -17,5 +17,6 @@ class StatusTaskSeeder extends Seeder
         TaskStatus::create(['name' => 'done', 'description' => 'Task completed']);
         TaskStatus::create(['name' => 'in progress', 'description' => 'Task in progress']);
         TaskStatus::create(['name' => 'waiting', 'description' => 'Waiting task']);
+        TaskStatus::create(['name' => 'delete', 'description' => ' Task deleted']);
     }
 }
