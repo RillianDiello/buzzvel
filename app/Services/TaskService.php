@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Task;
 use App\Models\TaskStatus;
 use Exception;
+use Illuminate\Support\Facades\Log;
 use PHPUnit\Event\Code\Throwable;
 
 class TaskService
@@ -18,7 +19,7 @@ class TaskService
         $newTask->description = $data['description'];
         $newTask->attachment = $data['attachment'];
         $newTask->user_id = $data['user_id'];
-        $newTask->task_status_id = Task::WAITTING;
+        $newTask->task_status_id = Task::WAITING;
 
         return !$newTask->save() ? throw new Exception('Error on create Task') : $newTask;
     }

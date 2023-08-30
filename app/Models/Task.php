@@ -11,7 +11,7 @@ class Task extends Model
 
     const DONE = 1;
     const PROGRESS = 2;
-    const WAITTING = 3;
+    const WAITING = 3;
     const DELETED = 4;
 
     use HasFactory;

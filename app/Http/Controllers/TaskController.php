@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Services\TaskService;
+use Database\Factories\TaskFactory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class TaskController extends Controller
 {
@@ -36,11 +38,13 @@ class TaskController extends Controller
         $request->validate($rules, $feedback);
 
         $task = $this->taskService->createNewTask($request->all());
+
         return response()->json($task, 201);
     }
 
     public function show($id)
     {
+
         $task = Task::with([
           'user' => function ($query) {
               $query->select('id', 'name', 'email');
@@ -50,12 +54,15 @@ class TaskController extends Controller
           }
         ])->findOrFail($id);
 
+
         return response()->json($task);
     }
+
 
     public function update(Request $request, $id)
     {
         $task = Task::findOrFail($id);
+
 
         if (!$task) {
             return response()->json(['message' => 'Task not found'], 404);
